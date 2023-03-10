@@ -44,6 +44,9 @@ fig = go.Figure(data=[
 ])
 fig.show()
 
+#Now, let's try to combine our go.Contour plot with the first scatter plot of our data points, 
+#so that we can visually compare the confidence of our model with the true labels.
+
 
 trace_specs = [
     [X_train, y_train, '0', 'Train', 'square'],
