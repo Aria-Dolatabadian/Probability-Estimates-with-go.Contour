@@ -43,3 +43,38 @@ fig = go.Figure(data=[
     )
 ])
 fig.show()
+
+
+trace_specs = [
+    [X_train, y_train, '0', 'Train', 'square'],
+    [X_train, y_train, '1', 'Train', 'circle'],
+    [X_test, y_test, '0', 'Test', 'square-dot'],
+    [X_test, y_test, '1', 'Test', 'circle-dot']
+]
+
+fig = go.Figure(data=[
+    go.Scatter(
+        x=X[y==label, 0], y=X[y==label, 1],
+        name=f'{split} Split, Label {label}',
+        mode='markers', marker_symbol=marker
+    )
+    for X, y, label, split, marker in trace_specs
+])
+fig.update_traces(
+    marker_size=12, marker_line_width=1.5,
+    marker_color="lightyellow"
+)
+
+fig.add_trace(
+    go.Contour(
+        x=xrange,
+        y=yrange,
+        z=Z,
+        showscale=False,
+        colorscale='RdBu',
+        opacity=0.4,
+        name='Score',
+        hoverinfo='skip'
+    )
+)
+fig.show()
